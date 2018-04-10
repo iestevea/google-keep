@@ -17,6 +17,10 @@ header {
     align-items: center;
     padding: 10px;
 }
+.material-icons.md-36 { 
+    font-size: 36px; 
+    color: white;
+  }
 .title {
     font-family: 'Product Sans',Arial,sans-serif;
     font-size: 22px;
