@@ -6,7 +6,7 @@ html,body {
 body {
     display: grid;
     grid-template-rows: 64px 1fr;
-    grid-template-columns: 55% 1fr;
+    grid-template-columns: 40% 1fr;
 }
 header {
     grid-column: 1 / -1;
@@ -80,7 +80,16 @@ header {
     grid-row: 2 / -1;
     display: block;
     z-index: 2;
+    animation-name: appear;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
 }
+@keyframes appear {
+    from{left: -40%;
+        position: relative;}
+    to{left: -5%;}
+}
+
 .content-blurred {
     filter: blur(1.5px);
     filter: grayscale(100%);
