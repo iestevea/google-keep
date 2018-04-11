@@ -15,11 +15,11 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
+    padding: 20px;
 }
 .material-icons.md-36 { 
-    font-size: 36px; 
-    color: white;
+    font-size: 24px; 
+    color: #6b6b6b;
   }
 .title {
     font-family: 'Product Sans',Arial,sans-serif;
@@ -89,7 +89,6 @@ header {
         position: relative;}
     to{left: -5%;}
 }
-
 .content-blurred {
     filter: blur(1.5px);
     filter: grayscale(100%);
