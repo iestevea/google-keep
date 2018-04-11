@@ -1,7 +1,10 @@
 window.onload = () => {
   document.getElementById("menu-button").addEventListener("click",() => {
-    var nav = document.getElementsByClassName("navigation");
-    nav[0].classList.toggle("navigation-visible");
-    console.log(nav[0]);
+    if(window.innerWidth <= 768){
+      var nav = document.getElementsByClassName("navigation");
+      nav[0].classList.toggle("navigation-visible");
+      var content = document.getElementsByClassName("content");
+      content[0].classList.toggle("content-blurred");
+    }
   });
 }
