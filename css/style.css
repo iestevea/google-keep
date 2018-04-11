@@ -88,7 +88,7 @@ header {
     display: flex;
     flex-direction: column;
     z-index: 2;
-    width: fit-content;
+    width:fit-content;
 }
 .navigation.navigation-visible { 
     margin-left: 0px;
@@ -98,7 +98,6 @@ header {
     filter: grayscale(100%);
     opacity: 0.6;
 }
-
 .navigation-items {
     display: flex;
     align-items: center;
@@ -131,9 +130,6 @@ body {
 .navigation {
     margin-left: 0px;
     grid-column: 1 / 2;
-    grid-row: 2 / -1;
-    display: flex;
-    flex-direction: column;
 }
 .content {
     grid-column: 2 / 3;
