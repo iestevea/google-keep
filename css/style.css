@@ -6,7 +6,8 @@ html,body {
 body {
     display: grid;
     grid-template-rows: 64px 1fr;
-    grid-template-columns: 40% 1fr;
+    grid-template-columns: 1fr;
+    background-color: #e8e8e8;
 }
 header {
     grid-column: 1 / -1;
@@ -76,35 +77,21 @@ header {
     font-weight: 500px;
 }
 .content, .navigation {
-    background-color: #e8e8e8;
     overflow-y: auto;
+    background-color: #e8e8e8;
 }
 .navigation{
-    display: none;
-}
-.navigation-hidden {
-    animation-name: appear;
-    animation-duration: 1s;
-    animation-timing-function: ease-in-out;
-}
-.navigation-visible { 
-    grid-column: 1 / 2;
+    margin-left: -250px;
+    transition: all 1s ease;
+    grid-column: 1 / -1;
     grid-row: 2 / -1;
-    display: block;
+    display: flex;
+    flex-direction: column;
     z-index: 2;
-    animation-name: appear;
-    animation-duration: 1s;
-    animation-timing-function: ease-in-out;
+    width: fit-content;
 }
-@keyframes appear {
-    from{left: -40%;
-        position: relative;}
-    to{left: -5%;}
-}
-@keyframes disappear {
-    from{left: -5%;}
-    to{left: -40%;
-        position: relative;}
+.navigation.navigation-visible { 
+    margin-left: 0px;
 }
 .content-blurred {
     filter: blur(1.5px);
@@ -139,9 +126,10 @@ header {
 
 @media (min-width:768px){
 body {
-    grid-template-columns: 280px 1fr;
+    grid-template-columns: 235px 1fr;
 }
 .navigation {
+    margin-left: 0px;
     grid-column: 1 / 2;
     grid-row: 2 / -1;
     display: flex;
