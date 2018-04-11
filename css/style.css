@@ -72,8 +72,11 @@ header {
     background-color: #e8e8e8;
     overflow-y: auto;
 }
-.navigation {
+.navigation{
     display: none;
+}
+.navigation-visible { 
+    display: block;
 }
 
 @media (min-width:768px){
