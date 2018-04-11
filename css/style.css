@@ -21,6 +21,13 @@ header {
     font-size: 24px; 
     color: #6b6b6b;
   }
+.menu-button-header {
+    padding:7px 9px 4px 9px; 
+}
+.menu-button-header:hover {
+    border-radius: 50%;
+    background-color: #6b6b6b49;
+}
 .title {
     font-family: 'Product Sans',Arial,sans-serif;
     font-size: 22px;
@@ -75,6 +82,11 @@ header {
 .navigation{
     display: none;
 }
+.navigation-hidden {
+    animation-name: appear;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+}
 .navigation-visible { 
     grid-column: 1 / 2;
     grid-row: 2 / -1;
@@ -89,11 +101,17 @@ header {
         position: relative;}
     to{left: -5%;}
 }
+@keyframes disappear {
+    from{left: -5%;}
+    to{left: -40%;
+        position: relative;}
+}
 .content-blurred {
     filter: blur(1.5px);
     filter: grayscale(100%);
     opacity: 0.6;
 }
+
 .navigation-items {
     display: flex;
     align-items: center;
