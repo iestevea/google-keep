@@ -54,7 +54,7 @@ header {
     grid-row: 2 / -1;
     display: grid;
     padding: 25px;
-    grid-template-rows: 46px repeat(auto-fill,minmax(120px,1fr)) ;
+    grid-template-rows: 46px 1fr ;
     grid-template-columns: repeat(auto-fill,minmax(240px,1fr)) ;
     grid-gap: 10px 20px;
 }
@@ -81,6 +81,7 @@ header {
     padding: 10px;
     background-color: white;
     box-shadow: 2px 2px 5px gray;
+    height: fit-content;
 }
 .content-notes>p {
     font-family: 'Patrick Hand', cursive;
