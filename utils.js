@@ -4,11 +4,13 @@ function sideMenuBehavior() {
   var nav = document.getElementsByClassName("navigation")[0];
   var menuBtn = document.getElementsByClassName("menu-button-header")[0];
   var addNoteBtn = document.getElementsByClassName("addNoteBtn")[0];
+  var inputNote = document.getElementsByClassName("searcher-content")[0].getElementsByTagName("input")[0];
 
   menuBtn.addEventListener("click", showMenu);
   content.addEventListener("click", hideMenu);
   addNoteBtn.addEventListener("click", addNote);
-  
+  inputNote.addEventListener("keyup", enableAddBtn);
+
   function showMenu() {
     if(window.innerWidth <= 768){
       nav.classList.toggle("navigation-visible");
@@ -18,13 +20,21 @@ function sideMenuBehavior() {
   
   function hideMenu() { 
     if(window.innerWidth <= 768){ // && nav.classList.contains("navigation-visible") && content.classList.contains("content-blurred") -- Note: Removing a class that does not exist, does NOT throw an error!!!
-    nav.classList.remove("navigation-visible");
-    content.classList.remove("content-blurred");
-  }
+      nav.classList.remove("navigation-visible");
+      content.classList.remove("content-blurred");
+    }
 }
 
-  function addNote(){
-    console.log("se ha pulsado el btn añadir nota");
+  function addNote() {
+
+  }
+
+  function enableAddBtn() {
+    if(inputNote.value != ''){
+      addNoteBtn.classList.remove("disabled");
+    }else{
+      addNoteBtn.classList.add("disabled");
+    }
   }
 
 }

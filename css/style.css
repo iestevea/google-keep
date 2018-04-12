@@ -74,6 +74,9 @@ header {
     outline: none;
     flex-grow: 1;
 }
+.searcher-content .addNoteBtn.disabled {
+    pointer-events: none;
+}
 .content-notes {
     padding: 10px;
     background-color: white;
