@@ -1,17 +1,24 @@
-window.onload = () => {
-  var content = document.getElementsByClassName("content");
-  var nav = document.getElementsByClassName("navigation");
-  document.getElementsByClassName("menu-button-header")[0].addEventListener("click",() => {
-    if(window.innerWidth <= 768){
-      nav[0].classList.toggle("navigation-visible");
-      content[0].classList.toggle("content-blurred");
-    }
-  });
-  content[0].addEventListener("click",() => {
-    if(window.innerWidth <= 768 && nav[0].classList.contains("navigation-visible") && content[0].classList.contains("content-blurred")){
-      nav[0].classList.remove("navigation-visible");
-      content[0].classList.remove("content-blurred");
-    }
-  });
+function sideMenuBehavior() {
   
+  var content = document.getElementsByClassName("content")[0];
+  var nav = document.getElementsByClassName("navigation")[0];
+  var menuBtn = document.getElementsByClassName("menu-button-header")[0];
+
+  menuBtn.addEventListener("click", showMenu);
+  content.addEventListener("click", hideMenu);
+
+  function showMenu() {
+    if(window.innerWidth <= 768){
+      nav.classList.toggle("navigation-visible");
+      content.classList.toggle("content-blurred");
+    }
+  }
+
+  function hideMenu() { 
+    if(window.innerWidth <= 768){ // && nav.classList.contains("navigation-visible") && content.classList.contains("content-blurred") -- Note: Removing a class that does not exist, does NOT throw an error!!!
+      nav.classList.remove("navigation-visible");
+      content.classList.remove("content-blurred");
+    }
+  }
+
 }
