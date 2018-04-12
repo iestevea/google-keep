@@ -90,9 +90,9 @@ header {
     height: fit-content;
 }
 .content-notes>p {
-    font-family: 'Patrick Hand', cursive;
-    font-size: 21px;
-    font-weight: 500px;
+    font-family: 'Roboto Slab', serif;
+    font-size: 36px;
+    margin: 5px 0px;
     word-wrap: break-word;
 }
 .content, .navigation {
