@@ -86,6 +86,7 @@ header {
     font-family: 'Patrick Hand', cursive;
     font-size: 21px;
     font-weight: 500px;
+    word-wrap: break-word;
 }
 .content, .navigation {
     overflow-y: auto;

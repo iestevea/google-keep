@@ -26,7 +26,12 @@ function sideMenuBehavior() {
 }
 
   function addNote() {
-
+    var textNote = inputNote.value;
+    var newNote = document.createElement("div");
+    newNote.setAttribute("class","content-notes");
+    newNote.innerHTML = "<p>"+textNote+"</p>";
+    console.log(newNote);
+    content.appendChild(newNote);
   }
 
   function enableAddBtn() {
