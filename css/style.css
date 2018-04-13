@@ -39,17 +39,25 @@ header {
     font-weight: bolder;
 }
 .searcher-header {
-    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     background-color: rgba(136, 132, 132, 0.178);
-    height: 100%;
     flex-grow: 1;
     margin: 0px 30px;
     border-radius: 3px;
+    padding: 8px;
+}
+.searcher-header input {
+    outline: none;
+    border: none;
+    background-color: rgba(136, 132, 132, 0);
     padding-left: 35px;
+    flex-grow: 1;
+    font-size: 16px;
 }
 .searcher-header:focus {
     background-color: white;
-    outline: none;
 }
 .right-header-icons a {
     text-decoration: none;
