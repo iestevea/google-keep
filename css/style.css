@@ -34,6 +34,9 @@ header {
     font-size: 22px;
     font-weight: 500;
     margin-left: 15px;
+    display: flex;
+    justify-content: space-between;
+    flex-basis: 136px;
 }
 .title span {
     font-weight: bolder;
@@ -148,7 +151,7 @@ header {
     width: 100%;
     color: black;
     font-family:Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
-    font-size: 15px;
+    font-size: 13px;
 }
 
 ::-webkit-scrollbar {
@@ -162,7 +165,7 @@ header {
 @media (min-width:768px){
 
     body {
-        grid-template-columns: 235px 1fr;
+        grid-template-columns: 245px 1fr;
     }
     .navigation {
         margin-left: 0px;
