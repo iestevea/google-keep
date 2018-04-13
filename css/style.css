@@ -97,6 +97,9 @@ header {
 .searcher-content .addNoteBtn.disabled {
     pointer-events: none;
 }
+.addNoteBtn.disabled .material-icons.md-36.md-light{
+		color:#9e9d9de0;
+}
 .content-notes {
 	display: grid;
 	grid-template-rows: repeat(auto-fill,minmax(78px,1fr));
