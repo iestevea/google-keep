@@ -19,7 +19,7 @@ function sideMenuBehavior() {
   }
   
   function hideMenu() { 
-    if(window.innerWidth <= 768){ // && nav.classList.contains("navigation-visible") && content.classList.contains("content-blurred") -- Note: Removing a class that does not exist, does NOT throw an error!!!
+    if(window.innerWidth <= 768){ 
       nav.classList.remove("navigation-visible");
       content.classList.remove("content-blurred");
     }
