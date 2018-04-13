@@ -29,6 +29,7 @@ function manageNotes() {
   var content = document.getElementsByClassName("content-notes")[0];
   var addNoteBtn = document.getElementsByClassName("addNoteBtn")[0];
   var inputNote = document.getElementsByClassName("searcher-content")[0].getElementsByTagName("input")[0];
+  
   addNoteBtn.addEventListener("click", addNote);
   inputNote.addEventListener("keyup", enableAddBtn);
 
@@ -42,9 +43,12 @@ function manageNotes() {
     enableAddBtn();
   }
   
-  function enableAddBtn() {
+  function enableAddBtn(e) {
     if(inputNote.value != ''){
       addNoteBtn.classList.remove("disabled");
+      if(e.keyCode == 13){
+        addNote();
+      }
     }else{
       addNoteBtn.classList.add("disabled");
     }
