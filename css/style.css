@@ -10,6 +10,8 @@ body {
     background-color: #e8e8e8;
 }
 header {
+		width: 100%;
+		box-sizing: border-box;
     grid-column: 1 / -1;
     grid-row: 1 / 2;
     background-color: #ffbb00;
@@ -32,10 +34,9 @@ header {
     font-family: 'Product Sans',Arial,sans-serif;
     font-size: 22px;
     font-weight: 500;
-    margin-left: 15px;
+    margin: 0 15px;
     display: flex;
-    justify-content: space-between;
-    flex-basis: 136px;
+    flex-wrap: wrap;
 }
 .title span {
     font-weight: bolder;
@@ -46,25 +47,23 @@ header {
     justify-content: space-between;
     background-color: rgba(136, 132, 132, 0.178);
     flex-grow: 1;
-    margin: 0px 30px;
+    margin: 0px 15px;
     border-radius: 3px;
 		padding: 8px;
-		flex-basis: 10px;
 }
 .searcher-header input {
     outline: none;
     border: none;
     background-color: rgba(136, 132, 132, 0);
-    padding-left: 35px;
-    flex-grow: 1;
+    padding-left: 10px;
+    width: 100%;
     font-size: 16px;
 }
 .searcher-header:focus {
     background-color: white;
 }
 .right-header-icons {
-    display: flex;
-    flex-basis: 130px;
+    display: none;
 }
 .right-header-icons a {
     text-decoration: none;
@@ -170,6 +169,15 @@ header {
 ::-webkit-scrollbar-thumb {
     border-radius: 3px;
     color: #6b6b6b;
+}
+
+
+@media (min-width:480px){
+
+	.right-header-icons {
+		display: flex;
+	}
+
 }
 
 @media (min-width:768px){
