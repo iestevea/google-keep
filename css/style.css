@@ -62,6 +62,10 @@ header {
 .searcher-header:focus {
     background-color: white;
 }
+.right-header-icons {
+    display: flex;
+    flex-basis: 130px;
+}
 .right-header-icons a {
     text-decoration: none;
     margin: 0px 10px;

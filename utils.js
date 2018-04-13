@@ -19,10 +19,10 @@ function sideMenuBehavior() {
   }
   
   function hideMenu() { 
-    if(window.innerWidth <= 768){ 
+    // if(window.innerWidth <= 768){ 
       nav.classList.remove("navigation-visible");
       content.classList.remove("content-blurred");
-    }
+    // }
 }
 
   function addNote() {
