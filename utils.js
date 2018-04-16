@@ -69,6 +69,7 @@ function manageNotes() {
 function manageSearcher(notes){
 
   var searcher = document.getElementsByClassName("searcher-header")[0].getElementsByTagName("input")[0];
+  var content = document.getElementsByClassName("content-notes")[0];
   var notesFiltered = [];
   
   searcher.addEventListener("keyup",CheckFilterNotes);
@@ -79,6 +80,12 @@ function manageSearcher(notes){
 
     if(!!textFilterNotes.trim()){
       notesFiltered = filterNotes(textFilterNotes,notes);
+      while (content.firstChild && notesFiltered.length > 0) {
+        content.removeChild(content.firstChild);
+      }
+      notesFiltered.forEach( (elem) => content.appendChild(elem));
+    }else{
+      notes.forEach( (elem) => content.appendChild(elem));
     }
     
     function filterNotes(text,arrayNotes){
@@ -90,8 +97,6 @@ function manageSearcher(notes){
           newArrayNotes.push(elem);
         }
       });
-
-      console.log(newArrayNotes);
       return newArrayNotes;
     }
   }
