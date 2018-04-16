@@ -35,12 +35,17 @@ function manageNotes() {
 
   function addNote() {
     var textNote = inputNote.value;
-    var newNote = document.createElement("div");
-    newNote.setAttribute("class","content-notes-note");
-    newNote.innerHTML = "<p>"+textNote+"</p>";
+    var newNote = createNote(textNote);
     content.appendChild(newNote);
     inputNote.value = '';
     enableAddBtn();
+
+    function createNote(textNote) {
+      var note = document.createElement("div");
+      note.setAttribute("class","content-notes-note");
+      note.innerHTML = `<p>${textNote}</p>`;
+      return note;
+    }
   }
   
   function enableAddBtn(e) {
