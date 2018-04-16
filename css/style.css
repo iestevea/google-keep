@@ -25,8 +25,16 @@ header {
 }
 .material-icons.md-36 { 
     font-size: 24px; 
-    color: #5c5b5b;
   }
+.material-icons.md-black {
+    color: #5c5b5b;
+}
+.material-icons.md-light {
+    color:white;
+}
+.arrow-back.disabled, .menu.disabled {
+    display: none;
+}
 .menu-button-header {
     padding:7px 9px 4px 9px; 
 }
@@ -104,7 +112,7 @@ header {
 .searcher-content .addNoteBtn.disabled {
     pointer-events: none;
 }
-.addNoteBtn.disabled .material-icons.md-36.md-light{
+.addNoteBtn.disabled .material-icons.md-36.md-black{
 		color:#9e9d9de0;
 }
 .content-notes {

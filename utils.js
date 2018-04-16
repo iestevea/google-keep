@@ -71,6 +71,9 @@ function manageSearcher(notes){
   var searcher = divSearch.getElementsByTagName("input")[0];
   var content = document.getElementsByClassName("content-notes")[0];
   var header = document.getElementsByTagName("header")[0];
+  var menuBtn = document.getElementsByClassName("menu")[0];
+  var backBtn = document.getElementsByClassName("arrow-back")[0];
+  var iconsRight = document.getElementsByClassName("right-header-icons")[0];
   var notesFiltered = [];
   
   searcher.addEventListener("keyup",CheckFilterNotes);
@@ -106,11 +109,23 @@ function manageSearcher(notes){
     function changeStyle() {
       header.classList.add("header-blue");
       divSearch.classList.add("searcher-header-blue");
+      menuBtn.classList.add("disabled");
+      backBtn.classList.remove("disabled");
+      Array.from(iconsRight.getElementsByClassName("material-icons")).map((elem) => {
+        elem.classList.remove("md-black");
+        elem.classList.add("md-light");
+      });
     }
 
     function removeStyle(){
       header.classList.remove("header-blue");
       divSearch.classList.remove("searcher-header-blue");
+      menuBtn.classList.remove("disabled");
+      backBtn.classList.add("disabled");
+      Array.from(iconsRight.getElementsByClassName("material-icons")).map((elem) => {
+        elem.classList.remove("md-light");
+        elem.classList.add("md-black");
+      });
     }
   }
 
