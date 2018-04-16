@@ -44,7 +44,7 @@ function manageNotes() {
   }
   
   function enableAddBtn(e) {
-    if(inputNote.value != ''){
+    if(!!inputNote.value.trim()){
       addNoteBtn.classList.remove("disabled");
       if(e.keyCode == 13){
         addNote();
