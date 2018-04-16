@@ -67,9 +67,10 @@ function manageNotes() {
 }
 
 function manageSearcher(notes){
-
-  var searcher = document.getElementsByClassName("searcher-header")[0].getElementsByTagName("input")[0];
+  var divSearch = document.getElementsByClassName("searcher-header")[0];
+  var searcher = divSearch.getElementsByTagName("input")[0];
   var content = document.getElementsByClassName("content-notes")[0];
+  var header = document.getElementsByTagName("header")[0];
   var notesFiltered = [];
   
   searcher.addEventListener("keyup",CheckFilterNotes);
@@ -84,8 +85,10 @@ function manageSearcher(notes){
         content.removeChild(content.firstChild);
       }
       notesFiltered.forEach( (elem) => content.appendChild(elem));
+      changeStyle();
     }else{
       notes.forEach( (elem) => content.appendChild(elem));
+      removeStyle();
     }
     
     function filterNotes(text,arrayNotes){
@@ -98,6 +101,16 @@ function manageSearcher(notes){
         }
       });
       return newArrayNotes;
+    }
+
+    function changeStyle() {
+      header.classList.add("header-blue");
+      divSearch.classList.add("searcher-header-blue");
+    }
+
+    function removeStyle(){
+      header.classList.remove("header-blue");
+      divSearch.classList.remove("searcher-header-blue");
     }
   }
 

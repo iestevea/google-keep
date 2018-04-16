@@ -10,14 +10,18 @@ body {
     background-color: #e8e8e8;
 }
 header {
-		width: 100%;
-		box-sizing: border-box;
+    width: 100%;
+    box-sizing: border-box;
     grid-column: 1 / -1;
     grid-row: 1 / 2;
     background-color: #ffbb00;
     display: flex;
-		align-items: center;
+	align-items: center;
     padding: 13px;
+}
+.header-blue {
+    background-color: rgb(62, 80, 180);
+    color: white;
 }
 .material-icons.md-36 { 
     font-size: 24px; 
@@ -61,6 +65,9 @@ header {
 }
 .searcher-header:focus {
     background-color: white;
+}
+.searcher-header-blue {
+    background-color: #5d6cc0;
 }
 .right-header-icons {
     display: none;
