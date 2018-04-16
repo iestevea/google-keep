@@ -1,6 +1,7 @@
 function initMethods() {
   sideMenuBehavior();
-  manageNotes();
+  var notes = manageNotes();
+  manageSearcher(notes);
 }
 
 function sideMenuBehavior() {
@@ -60,4 +61,39 @@ function manageNotes() {
       addNoteBtn.classList.add("disabled");
     }
   }
+
+  return notes;
+
+}
+
+function manageSearcher(notes){
+
+  var searcher = document.getElementsByClassName("searcher-header")[0].getElementsByTagName("input")[0];
+  var notesFiltered = [];
+  
+  searcher.addEventListener("keyup",CheckFilterNotes);
+
+  function CheckFilterNotes(e){
+
+    var textFilterNotes = e.target.value;
+
+    if(!!textFilterNotes.trim()){
+      notesFiltered = filterNotes(textFilterNotes,notes);
+    }
+    
+    function filterNotes(text,arrayNotes){
+
+      var newArrayNotes = [];
+
+      arrayNotes.forEach((elem) => {
+        if(elem.innerText.includes(text)){
+          newArrayNotes.push(elem);
+        }
+      });
+
+      console.log(newArrayNotes);
+      return newArrayNotes;
+    }
+  }
+
 }
