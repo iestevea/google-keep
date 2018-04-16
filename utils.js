@@ -84,7 +84,7 @@ function manageSearcher(notes){
 
     if(!!textFilterNotes.trim()){
       notesFiltered = filterNotes(textFilterNotes,notes);
-      while (content.firstChild && notesFiltered.length > 0) {
+      while (content.firstChild && notesFiltered.length >= 0) {
         content.removeChild(content.firstChild);
       }
       notesFiltered.forEach( (elem) => content.appendChild(elem));
