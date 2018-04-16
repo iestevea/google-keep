@@ -29,6 +29,7 @@ function manageNotes() {
   var content = document.getElementsByClassName("content-notes")[0];
   var addNoteBtn = document.getElementsByClassName("addNoteBtn")[0];
   var inputNote = document.getElementsByClassName("searcher-content")[0].getElementsByTagName("input")[0];
+  var notes = [];
   
   addNoteBtn.addEventListener("click", addNote);
   inputNote.addEventListener("keyup", enableAddBtn);
@@ -37,6 +38,7 @@ function manageNotes() {
     var textNote = inputNote.value;
     var newNote = createNote(textNote);
     content.appendChild(newNote);
+    notes.push(newNote);
     inputNote.value = '';
     enableAddBtn();
 
