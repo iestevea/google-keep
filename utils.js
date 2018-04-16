@@ -76,7 +76,8 @@ function manageSearcher(notes){
   var iconsRight = document.getElementsByClassName("right-header-icons")[0];
   var notesFiltered = [];
   
-  searcher.addEventListener("keyup",CheckFilterNotes);
+  searcher.addEventListener("keyup", CheckFilterNotes);
+  backBtn.addEventListener("click", restartNotes);
 
   function CheckFilterNotes(e){
 
@@ -90,14 +91,11 @@ function manageSearcher(notes){
       notesFiltered.forEach( (elem) => content.appendChild(elem));
       changeStyle();
     }else{
-      notes.forEach( (elem) => content.appendChild(elem));
-      removeStyle();
+      restartNotes();
     }
     
     function filterNotes(text,arrayNotes){
-
       var newArrayNotes = [];
-
       arrayNotes.forEach((elem) => {
         if(elem.innerText.includes(text)){
           newArrayNotes.push(elem);
@@ -105,28 +103,35 @@ function manageSearcher(notes){
       });
       return newArrayNotes;
     }
+  }
+  
+  function changeStyle() {
+    header.classList.add("header-blue");
+    divSearch.classList.add("searcher-header-blue");
+    menuBtn.classList.add("disabled");
+    backBtn.classList.remove("disabled");
+    Array.from(iconsRight.getElementsByClassName("material-icons")).map((elem) => {
+      elem.classList.remove("md-black");
+      elem.classList.add("md-light");
+    });
+  }
 
-    function changeStyle() {
-      header.classList.add("header-blue");
-      divSearch.classList.add("searcher-header-blue");
-      menuBtn.classList.add("disabled");
-      backBtn.classList.remove("disabled");
-      Array.from(iconsRight.getElementsByClassName("material-icons")).map((elem) => {
-        elem.classList.remove("md-black");
-        elem.classList.add("md-light");
-      });
-    }
+  function removeStyle(){
+    header.classList.remove("header-blue");
+    divSearch.classList.remove("searcher-header-blue");
+    menuBtn.classList.remove("disabled");
+    backBtn.classList.add("disabled");
+    Array.from(iconsRight.getElementsByClassName("material-icons")).map((elem) => {
+      elem.classList.remove("md-light");
+      elem.classList.add("md-black");
+    });
+  }
 
-    function removeStyle(){
-      header.classList.remove("header-blue");
-      divSearch.classList.remove("searcher-header-blue");
-      menuBtn.classList.remove("disabled");
-      backBtn.classList.add("disabled");
-      Array.from(iconsRight.getElementsByClassName("material-icons")).map((elem) => {
-        elem.classList.remove("md-light");
-        elem.classList.add("md-black");
-      });
-    }
+  function restartNotes(){
+    notesFiltered = [];
+    notes.forEach( (elem) => content.appendChild(elem));
+    searcher.value = '';
+    removeStyle();
   }
 
 }
