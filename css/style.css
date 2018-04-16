@@ -127,11 +127,14 @@ header {
     box-shadow: 2px 2px 5px gray;
     height: fit-content;
 }
-.content-notes-note>p {
+.content-notes-note>p, .content-notes-note>span {
     font-family: 'Roboto Slab', serif;
     font-size: 36px;
     margin: 5px 0px;
     word-wrap: break-word;
+}
+.content-notes-note span.highlight {
+    background-color: #afafafd8;
 }
 .content, .navigation {
     overflow-y: auto;

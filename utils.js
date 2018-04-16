@@ -75,6 +75,7 @@ function manageSearcher(notes){
   var backBtn = document.getElementsByClassName("arrow-back")[0];
   var iconsRight = document.getElementsByClassName("right-header-icons")[0];
   var notesFiltered = [];
+  var notesAux = [];
   
   searcher.addEventListener("keyup", CheckFilterNotes);
   backBtn.addEventListener("click", restartNotes);
@@ -85,24 +86,40 @@ function manageSearcher(notes){
 
     if(!!textFilterNotes.trim()){
       notesFiltered = filterNotes(textFilterNotes,notes);
-      while (content.firstChild && notesFiltered.length >= 0) {
+      notesAux = notesFiltered.map( (elem) => {
+        var auxText = `<span class="highlight">${textFilterNotes}</span>`;
+        var x = elem.innerHTML.split(textFilterNotes);
+        x.splice(1,0,auxText);
+        return x.join('');
+      });
+      while (content.firstChild && notesAux.length >= 0) {
+        console.log("borro");
         content.removeChild(content.firstChild);
       }
-      notesFiltered.forEach( (elem) => content.appendChild(elem));
+      notesAux.forEach((elem) => {
+        var note = document.createElement("div");
+        note.setAttribute("class","content-notes-note");
+        note.innerHTML = elem;
+        content.appendChild(note);
+      });
       changeStyle();
     }else{
       restartNotes();
     }
+    console.log("notesaux: "+notesAux);
+    console.log("notes: "+notes);
+    console.log("notes filtered: "+notesFiltered);
     
-    function filterNotes(text,arrayNotes){
-      var newArrayNotes = [];
-      arrayNotes.forEach((elem) => {
-        if(elem.innerText.includes(text)){
-          newArrayNotes.push(elem);
-        }
-      });
-      return newArrayNotes;
-    }
+  }
+
+  function filterNotes(text,arrayNotes){
+    var newArrayNotes = [];
+    arrayNotes.forEach((elem) => {
+      if(elem.innerText.includes(text)){
+        newArrayNotes.push(elem);
+      }
+    });
+    return newArrayNotes;
   }
   
   function changeStyle() {
@@ -129,6 +146,11 @@ function manageSearcher(notes){
 
   function restartNotes(){
     notesFiltered = [];
+    while (content.firstChild && notesAux.length >= 0) {
+      console.log("borro desde restart");
+      content.removeChild(content.firstChild);
+    }
+    notesAux = [];
     notes.forEach( (elem) => content.appendChild(elem));
     searcher.value = '';
     removeStyle();
