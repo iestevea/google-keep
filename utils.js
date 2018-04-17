@@ -46,10 +46,16 @@ function manageNotes() {
     function createNote(textNote) {
       var note = document.createElement("div");
       note.setAttribute("class","content-notes-note");
-      note.innerHTML = `<p>${textNote}</p>`;
+      note.innerHTML = `<p>${textNote}</p><a href="#" ><i class="material-icons md-36  md-black">delete</i></a>`;
       return note;
     }
+
   }
+
+  function deleteNote(note) {
+
+  }
+
   
   function enableAddBtn(e) {
     if(!!inputNote.value.trim()){

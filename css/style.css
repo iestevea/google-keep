@@ -117,20 +117,27 @@ header {
 }
 .content-notes {
 	display: grid;
-	grid-template-rows: repeat(auto-fill,minmax(78px,1fr));
+	grid-template-rows: repeat(auto-fill,minmax(90px,1fr));
 	grid-template-columns: repeat(auto-fill,minmax(240px,1fr)) ;
 	grid-gap: 10px 10px;
 }
 .content-notes-note {
-    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 8px;
     background-color: white;
     box-shadow: 2px 2px 5px gray;
-    height: fit-content;
+}
+.content-notes-note a {
+    /* align-self: flex-end; */
+    justify-self: end;
 }
 .content-notes-note>p, .content-notes-note>span {
+    width: 100%;
     font-family: 'Roboto Slab', serif;
     font-size: 36px;
-    margin: 5px 0px;
+    margin: 0px;
     word-wrap: break-word;
 }
 .content-notes-note span.highlight {
