@@ -75,7 +75,6 @@ function manageSearcher(notes){
   var backBtn = document.getElementsByClassName("arrow-back")[0];
   var iconsRight = document.getElementsByClassName("right-header-icons")[0];
   var notesFiltered = [];
-  var notesAux = [];
   
   searcher.addEventListener("keyup", CheckFilterNotes);
   backBtn.addEventListener("click", restartNotes);
@@ -85,11 +84,11 @@ function manageSearcher(notes){
     var textFilterNotes = e.target.value;
 
     if(!!textFilterNotes.trim()){
-      notesAux = filterNotes(textFilterNotes,notes);
-      while (content.firstChild && notesAux.length >= 0) {
+      notesFiltered = filterNotes(textFilterNotes,notes);
+      while (content.firstChild && notesFiltered.length >= 0) {
         content.removeChild(content.firstChild);
       }
-      notesAux.forEach((elem) => {
+      notesFiltered.forEach((elem) => {
         var note = document.createElement("div");
         note.setAttribute("class","content-notes-note");
         note.innerHTML = elem;
@@ -103,18 +102,11 @@ function manageSearcher(notes){
 
   function filterNotes(text,arrayNotes){
     var newArrayNotes = [];
-    arrayNotes.forEach((elem) => {
-      if(elem.innerText.includes(text)){
-        newArrayNotes.push(elem);
-      }
+    newArrayNotes = arrayNotes.filter((note) => note.innerText.includes(text));
+    newArrayNotes = newArrayNotes.map( (note) => {
+       return note.innerHTML.replace(text,`<span class="highlight">${text}</span>`);
     });
-    notesAux = newArrayNotes.map( (elem) => {
-      var auxText = `<span class="highlight">${text}</span>`;
-      var x = elem.innerHTML.split(text);
-      x.splice(1,0,auxText);
-      return x.join('');
-    });
-    return notesAux;
+    return newArrayNotes;
   }
   
   function changeStyle() {
@@ -140,11 +132,10 @@ function manageSearcher(notes){
   }
 
   function restartNotes(){
-    while (content.firstChild && notesAux.length >= 0) {
+    while (content.firstChild && notesFiltered.length >= 0) {
       content.removeChild(content.firstChild);
     }
     notesFiltered = [];
-    notesAux = [];
     notes.forEach( (elem) => content.appendChild(elem));
     searcher.value = '';
     removeStyle();
