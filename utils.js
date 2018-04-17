@@ -46,14 +46,17 @@ function manageNotes() {
     function createNote(textNote) {
       var note = document.createElement("div");
       note.setAttribute("class","content-notes-note");
-      note.innerHTML = `<p>${textNote}</p><a href="#" ><i class="material-icons md-36  md-black">delete</i></a>`;
+      note.innerHTML = `<p>${textNote}</p><a href="#" class="deleteNoteBtn" ><i class="material-icons md-36  md-black">delete</i></a>`;
+      note.children[1].addEventListener("click",deleteNote);
       return note;
     }
 
   }
 
-  function deleteNote(note) {
-
+  function deleteNote(e) {
+    var index = notes.indexOf(e.target.parentNode.parentNode);
+    notes.splice(index,1);
+    content.removeChild(e.target.parentNode.parentNode);
   }
 
   
