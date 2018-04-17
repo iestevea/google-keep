@@ -85,9 +85,7 @@ function manageSearcher(notes){
 
     if(!!textFilterNotes.trim()){
       notesFiltered = filterNotes(textFilterNotes,notes);
-      while (content.firstChild && notesFiltered.length >= 0) {
-        content.removeChild(content.firstChild);
-      }
+      removeNotes();
       notesFiltered.forEach((elem) => {
         var note = document.createElement("div");
         note.setAttribute("class","content-notes-note");
@@ -132,13 +130,17 @@ function manageSearcher(notes){
   }
 
   function restartNotes(){
-    while (content.firstChild && notesFiltered.length >= 0) {
-      content.removeChild(content.firstChild);
-    }
+    removeNotes();
     notesFiltered = [];
     notes.forEach( (elem) => content.appendChild(elem));
     searcher.value = '';
     removeStyle();
+  }
+
+  function removeNotes() {
+    while (content.firstChild && notesFiltered.length >= 0) {
+      content.removeChild(content.firstChild);
+    }
   }
 
 }
