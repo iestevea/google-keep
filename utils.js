@@ -46,17 +46,27 @@ function manageNotes() {
     function createNote(textNote) {
       var note = document.createElement("div");
       note.setAttribute("class","content-notes-note");
-      note.innerHTML = `<p>${textNote}</p><a href="#" class="deleteNoteBtn" ><i class="material-icons md-36  md-black">delete</i></a>`;
-      note.children[1].addEventListener("click",deleteNote);
+      note.innerHTML = `<p>${textNote}</p><div class="deleteNoteBtnContainer"><a href="#" class="deleteNoteBtn" ><i class="material-icons md-36  md-black">delete</i></a></div>`;
+      note.addEventListener("mouseenter", showDeleteBtn);
+      note.addEventListener("mouseleave", hideDeleteBtn);
+      note.children[1].children[0].addEventListener("click",deleteNote);
       return note;
     }
 
   }
 
+  function showDeleteBtn(e){
+    e.target.children[1].classList.add("visible");
+  }
+
+  function hideDeleteBtn(e){
+    e.target.children[1].classList.remove("visible");
+  }
+
   function deleteNote(e) {
-    var index = notes.indexOf(e.target.parentNode.parentNode);
+    var index = notes.indexOf(e.target.parentNode.parentNode.parentNode);
     notes.splice(index,1);
-    content.removeChild(e.target.parentNode.parentNode);
+    content.removeChild(e.target.parentNode.parentNode.parentNode);
   }
 
   
