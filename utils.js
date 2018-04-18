@@ -29,11 +29,13 @@ function manageNotes() {
 
   var content = document.getElementsByClassName("content-notes")[0];
   var addNoteBtn = document.getElementsByClassName("addNoteBtn")[0];
+  var deleteAllNotesBtn = document.getElementsByClassName("delete-all")[0];
   var inputNote = document.getElementsByClassName("searcher-content")[0].getElementsByTagName("input")[0];
   var notes = [];
   
   addNoteBtn.addEventListener("click", addNote);
   inputNote.addEventListener("keyup", enableAddBtn);
+  deleteAllNotesBtn.addEventListener("click",confirmDeleteNote);
 
   function addNote() {
     var textNote = inputNote.value;
@@ -74,6 +76,23 @@ function manageNotes() {
     notes.splice(index,1);
     content.removeChild(e.target.parentNode.parentNode.parentNode);
   }
+
+  function confirmDeleteNote(){
+    if(confirm("¿Estás seguro de que quieres borrar las notas seleccionadas?")) {
+      deleteAll();
+    } else {
+      uncheckedAll();
+    }
+  }
+
+  function deleteAll(){
+    console.log("borro todas");
+  }
+
+  function uncheckedAll(){
+    console.log("desmarco todas");
+  }
+
 
   
   function enableAddBtn(e) {
