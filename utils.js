@@ -40,27 +40,33 @@ function manageNotes() {
     var newNote = createNote(textNote);
     content.appendChild(newNote);
     notes.push(newNote);
+
     inputNote.value = '';
     enableAddBtn();
 
     function createNote(textNote) {
       var note = document.createElement("div");
       note.setAttribute("class","content-notes-note");
-      note.innerHTML = `<p>${textNote}</p><div class="deleteNoteBtnContainer"><a href="#" class="deleteNoteBtn" ><i class="material-icons md-36  md-black">delete</i></a></div>`;
-      note.addEventListener("mouseenter", showDeleteBtn);
-      note.addEventListener("mouseleave", hideDeleteBtn);
-      note.children[1].children[0].addEventListener("click",deleteNote);
+      note.innerHTML = `<p>${textNote}</p><div class="deleteNoteBtnContainer"><a href="#" class="deleteNoteBtn" ><input type="checkbox"><i class="material-icons md-36  md-black">delete</i></a></div>`;
+      note.addEventListener("mouseenter", showNoteBtns);
+      note.addEventListener("mouseleave", hideNoteBtns);
+      note.children[1].children[0].children[0].addEventListener("change",setNoteState);
+      note.children[1].children[0].children[1].addEventListener("click",deleteNote);
       return note;
     }
 
   }
 
-  function showDeleteBtn(e){
+  function showNoteBtns(e){
     e.target.children[1].classList.add("visible");
   }
 
-  function hideDeleteBtn(e){
+  function hideNoteBtns(e){
     e.target.children[1].classList.remove("visible");
+  }
+
+  function setNoteState(e){
+    console.log(e.target.checked);
   }
 
   function deleteNote(e) {
