@@ -49,11 +49,21 @@ function manageNotes() {
     function createNote(textNote) {
       var note = document.createElement("div");
       note.setAttribute("class","content-notes-note");
-      note.innerHTML = `<p>${textNote}</p><div class="deleteNoteBtnContainer"><a href="#" class="deleteNoteBtn" ><input type="checkbox"><i class="material-icons md-36  md-black">delete</i></a></div>`;
+      note.innerHTML = getNoteContent(textNote);
       note.addEventListener("mouseenter", showNoteBtns);
       note.addEventListener("mouseleave", hideNoteBtns);
       note.children[1].children[0].children[1].addEventListener("click",deleteNote);
       return note;
+    }
+
+    function getNoteContent(text) {
+        return `<p>${text}</p>
+          <div class="deleteNoteBtnContainer">
+            <a href="#" class="deleteNoteBtn" >
+              <input type="checkbox">
+              <i class="material-icons md-36  md-black">delete</i>
+            </a>
+          </div>`;
     }
 
   }
