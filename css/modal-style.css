@@ -23,6 +23,9 @@
   font-family: Arial, Helvetica, sans-serif;
   font-size: 15px;
 }
+.modal-edit-note a {
+  align-self: flex-end;
+}
 .modal-edit-note label {
   margin-left: 15px;
 }
@@ -46,6 +49,7 @@
   box-shadow: 1.5px 1.5px 3px grey; 
 }
 .modal-edit-note button:hover {
+  cursor: pointer;
   background-color: #c7950b;
 }
 .modal-edit-note button:active {
