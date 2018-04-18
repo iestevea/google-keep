@@ -61,10 +61,10 @@ function manageNotes() {
           <div class="deleteNoteBtnContainer">
             <a href="#" class="deleteNoteBtn" >
               <input type="checkbox">
-              <i class="material-icons md-36  md-black">delete</i>
+              <i class="material-icons md-24  md-black">delete</i>
             </a>
             <a href="#" class="editNoteBtn" >
-              <i class="material-icons md-36  md-black">mode_edit</i>
+              <i class="material-icons md-24  md-black">mode_edit</i>
             </a>
           </div>`;
     }

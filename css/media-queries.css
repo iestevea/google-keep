@@ -1,0 +1,26 @@
+@media (min-width:480px) {
+
+	.right-header-icons {
+		display: flex;
+    }
+    
+    .modal-edit-note {
+        width: 400px;
+    }
+
+}
+
+@media (min-width:768px) {
+
+    body {
+        grid-template-columns: 245px 1fr;
+    }
+    .navigation {
+        margin-left: 0px;
+        grid-column: 1 / 2;
+    }
+    .content {
+        grid-column: 2 / 3;
+    }
+
+}
