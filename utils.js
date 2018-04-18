@@ -53,6 +53,7 @@ function manageNotes() {
       note.addEventListener("mouseenter", showNoteBtns);
       note.addEventListener("mouseleave", hideNoteBtns);
       note.children[1].children[0].children[1].addEventListener("click",deleteNote);
+      note.children[1].children[1].children[0].addEventListener("click",showModal);
       return note;
     }
 
@@ -67,6 +68,11 @@ function manageNotes() {
               <i class="material-icons md-24  md-black">mode_edit</i>
             </a>
           </div>`;
+    }
+
+    function showModal() {
+      var modal = document.getElementsByClassName("modal")[0];
+      modal.classList.remove("hidden");
     }
 
   }
