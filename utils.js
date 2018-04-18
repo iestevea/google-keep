@@ -70,10 +70,30 @@ function manageNotes() {
           </div>`;
     }
 
-    function showModal() {
+    function showModal(e) {
       var modal = document.getElementsByClassName("modal")[0];
+      var acceptEditBtn = document.getElementsByClassName("accept")[0];
+      var closeEditBtn = document.getElementsByClassName("close")[0];
+      var textToEdit = document.getElementsByClassName("modal-edit-note")[0].getElementsByTagName("input")[0];
+
       modal.classList.remove("hidden");
+
+      var promise = new Promise((resolve,reject) => {
+        acceptEditBtn.addEventListener("click", () => {
+          resolve(textToEdit.value);
+          // textToEdit.value ='';
+        });
+        closeEditBtn.addEventListener("click", () => modal.classList.add("hidden"));
+      });
+
+      promise.then((newText) => {
+        e.target.parentNode.parentNode.parentNode.innerHTML = getNoteContent(newText);
+        modal.classList.add("hidden");
+      });
+
+      
     }
+
 
   }
 
