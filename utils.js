@@ -82,21 +82,21 @@ function manageNotes() {
 
   function deleteAll(){
     Array.from(content.children).forEach((note,index) => {
-      console.log(note.getElementsByTagName("input")[0].checked);
       if(note.getElementsByTagName("input")[0].checked) {
-        console.log("esta marcada la nota"+index);
         notes.splice(index,1);
         content.removeChild(note);
       }
-    })
+    });
   }
 
   function uncheckedAll(){
-    console.log("desmarco todas");
+    Array.from(content.children).forEach((note,index) => {
+      if(note.getElementsByTagName("input")[0].checked){
+        note.getElementsByTagName("input")[0].checked = false;
+      }
+    });
   }
 
-
-  
   function enableAddBtn(e) {
     if(!!inputNote.value.trim()){
       addNoteBtn.classList.remove("disabled");
