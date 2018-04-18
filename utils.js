@@ -86,7 +86,14 @@ function manageNotes() {
   }
 
   function deleteAll(){
-    console.log("borro todas");
+    Array.from(content.children).forEach((note,index) => {
+      console.log(note.getElementsByTagName("input")[0].checked);
+      if(note.getElementsByTagName("input")[0].checked) {
+        console.log("esta marcada la nota"+index);
+        notes.splice(index,1);
+        content.removeChild(note);
+      }
+    })
   }
 
   function uncheckedAll(){
