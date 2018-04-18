@@ -52,7 +52,6 @@ function manageNotes() {
       note.innerHTML = `<p>${textNote}</p><div class="deleteNoteBtnContainer"><a href="#" class="deleteNoteBtn" ><input type="checkbox"><i class="material-icons md-36  md-black">delete</i></a></div>`;
       note.addEventListener("mouseenter", showNoteBtns);
       note.addEventListener("mouseleave", hideNoteBtns);
-      note.children[1].children[0].children[0].addEventListener("change",setNoteState);
       note.children[1].children[0].children[1].addEventListener("click",deleteNote);
       return note;
     }
@@ -65,10 +64,6 @@ function manageNotes() {
 
   function hideNoteBtns(e){
     e.target.children[1].classList.remove("visible");
-  }
-
-  function setNoteState(e){
-    console.log(e.target.checked);
   }
 
   function deleteNote(e) {
