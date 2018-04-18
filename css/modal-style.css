@@ -1,5 +1,4 @@
 .modal {
-  display: none;
   padding-top: 250px;
   z-index: 3;
   position: fixed;
@@ -8,6 +7,9 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0,0,0,0.4);
+}
+.modal.hidden {
+  display: none;
 }
 .modal-edit-note {
   width: 75%;
