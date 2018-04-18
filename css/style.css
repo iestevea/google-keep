@@ -20,7 +20,7 @@ body {
     background-color: rgba(0,0,0,0.4);;
 }
 .modal-edit-note {
-    width: 400px;
+    width: 75%;
     height: 150px;
     background-color: white;
     display: flex;
@@ -231,7 +231,11 @@ header {
 
 	.right-header-icons {
 		display: flex;
-	}
+    }
+    
+    .modal-edit-note {
+        width: 400px;
+    }
 
 }
 
