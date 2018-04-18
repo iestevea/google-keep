@@ -89,7 +89,7 @@ header {
     grid-row: 2 / -1;
     display: grid;
     padding: 25px;
-    grid-template-rows: 46px 1fr ;
+    grid-template-rows: 56px 1fr ;
 	grid-template-columns: 1fr;
     grid-gap: 10px 0px;
 }
@@ -138,6 +138,9 @@ header {
 }
 .content-notes-note .deleteNoteBtnContainer.visible {
     height: 26px;
+}
+.deleteNoteBtnContainer .deleteNoteBtn, .editNoteBtn {
+    text-decoration: none;
 }
 .content-notes-note>p, .content-notes-note>span {
     width: 100%;

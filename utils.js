@@ -63,6 +63,9 @@ function manageNotes() {
               <input type="checkbox">
               <i class="material-icons md-36  md-black">delete</i>
             </a>
+            <a href="#" class="editNoteBtn" >
+              <i class="material-icons md-36  md-black">mode_edit</i>
+            </a>
           </div>`;
     }
 
