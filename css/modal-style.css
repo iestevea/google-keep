@@ -1,4 +1,5 @@
 .modal {
+  display: none;
   padding-top: 250px;
   z-index: 3;
   position: fixed;
@@ -6,7 +7,7 @@
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0,0,0,0.4);;
+  background-color: rgba(0,0,0,0.4);
 }
 .modal-edit-note {
   width: 75%;
@@ -15,15 +16,36 @@
   display: flex;
   flex-direction: column;
   margin: auto;
-  border: 1px solid #888;
+  border: 1px solid rgb(117, 117, 117);
   padding: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
 }
 .modal-edit-note label {
-
+  margin-left: 15px;
 }
 .modal-edit-note input {
-
+  vertical-align: top;
+  text-align: start;
+  flex-grow: 1;
+  margin: 10px 15px;
 }
 .modal-edit-note button {
-  
+  font-family: Arial, Helvetica, sans-serif;
+  outline: none;
+  font-size: 1em;
+  border-radius: 5px;
+  width: 65px;
+  height: 28px;
+  margin: auto;
+  color: white;
+  border: none;
+  background-color: #d8a310;
+  box-shadow: 1.5px 1.5px 3px grey; 
+}
+.modal-edit-note button:hover {
+  background-color: #c7950b;
+}
+.modal-edit-note button:active {
+  box-shadow: none;
 }
