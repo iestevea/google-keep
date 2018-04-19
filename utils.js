@@ -37,6 +37,16 @@ function manageNotes() {
   inputNote.addEventListener("keyup", enableAddBtn);
   deleteAllNotesBtn.addEventListener("click",confirmDeleteNote);
 
+  function reOrder(notes) {
+    if(notes.length != localStorage.length){
+      localStorage.clear();
+      notes.forEach((note,index) => {
+        var text = note.children[0].innerText;
+        localStorage.setItem(`note${index}`,text);
+      });
+    }
+  }
+
   function addNote() {
     var textNote = inputNote.value;
     var newNote = createNote(textNote);
@@ -109,7 +119,7 @@ function manageNotes() {
   function deleteNote(e) {
     var index = notes.indexOf(e.target.parentNode.parentNode.parentNode);
     notes.splice(index,1);
-    localStorage.removeItem(`note${index}`);
+    reOrder(notes);
     content.removeChild(e.target.parentNode.parentNode.parentNode);
   }
 
@@ -125,10 +135,10 @@ function manageNotes() {
     Array.from(content.children).forEach((note,index) => {
       if(note.getElementsByTagName("input")[0].checked) {
         notes.splice(index,1);
-        localStorage.removeItem(`note${index}`);
         content.removeChild(note);
       }
     });
+    reOrder(notes);
   }
 
   function uncheckedAll(){
