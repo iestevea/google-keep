@@ -82,7 +82,14 @@ function manageNotes() {
     note.children[1].children[1].addEventListener("click", (e) => {
       getTextEdited().then((text) => {
         note.children[0].innerText = text;
+        var index;
+        notes.forEach((elem,i) => {
+          if(elem.children[0].innerText == text){
+            index = i;
+          }
+        });
         modal.classList.add("hidden");
+        localStorage.setItem(`note${index}`,text);
       });
     });
     return note;
