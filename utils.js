@@ -37,6 +37,8 @@ function manageNotes() {
   inputNote.addEventListener("keyup", enableAddBtn);
   deleteAllNotesBtn.addEventListener("click",confirmDeleteNote);
 
+  loadNotes();
+
   function reOrder(notes) {
     if(notes.length != localStorage.length){
       localStorage.clear();
@@ -44,6 +46,16 @@ function manageNotes() {
         var text = note.children[0].innerText;
         localStorage.setItem(`note${index}`,text);
       });
+    }
+  }
+
+  function loadNotes() {
+    if(localStorage.length != 0){
+      for(let i=0; i<localStorage.length; i++){
+        var newNote = createNote(localStorage.getItem(`note${i}`));
+        content.appendChild(newNote);
+        notes.push(newNote);
+      }
     }
   }
 
@@ -57,55 +69,53 @@ function manageNotes() {
 
     inputNote.value = '';
     enableAddBtn();
+  }
 
-    function createNote(textNote) {
-      var modal = document.getElementsByClassName("modal")[0];
-      var note = document.createElement("div");
-      note.setAttribute("class","content-notes-note");
-      note.innerHTML = getNoteContent(textNote);
-      note.addEventListener("mouseenter", showNoteBtns);
-      note.addEventListener("mouseleave", hideNoteBtns);
-      note.children[1].children[0].children[1].addEventListener("click",deleteNote);
-      note.children[1].children[1].addEventListener("click", (e) => {
-        getTextEdited().then((text) => {
-          note.children[0].innerText = text;
-          modal.classList.add("hidden");
-        });
+  function createNote(textNote) {
+    var modal = document.getElementsByClassName("modal")[0];
+    var note = document.createElement("div");
+    note.setAttribute("class","content-notes-note");
+    note.innerHTML = getNoteContent(textNote);
+    note.addEventListener("mouseenter", showNoteBtns);
+    note.addEventListener("mouseleave", hideNoteBtns);
+    note.children[1].children[0].children[1].addEventListener("click",deleteNote);
+    note.children[1].children[1].addEventListener("click", (e) => {
+      getTextEdited().then((text) => {
+        note.children[0].innerText = text;
+        modal.classList.add("hidden");
       });
-      return note;
-    }
+    });
+    return note;
+  }
 
-    function getNoteContent(text) {
-        return `<p>${text}</p>
-          <div class="deleteNoteBtnContainer">
-            <a href="#" class="deleteNoteBtn" >
-              <input type="checkbox">
-              <i class="material-icons md-24  md-black">delete</i>
-            </a>
-            <a href="#" class="editNoteBtn" >
-              <i class="material-icons md-24  md-black">mode_edit</i>
-            </a>
-          </div>`;
-    }
+  function getNoteContent(text) {
+      return `<p>${text}</p>
+        <div class="deleteNoteBtnContainer">
+          <a href="#" class="deleteNoteBtn" >
+            <input type="checkbox">
+            <i class="material-icons md-24  md-black">delete</i>
+          </a>
+          <a href="#" class="editNoteBtn" >
+            <i class="material-icons md-24  md-black">mode_edit</i>
+          </a>
+        </div>`;
+  }
 
-    function getTextEdited() {
-      var modal = document.getElementsByClassName("modal")[0];
-      var acceptEditBtn = document.getElementsByClassName("accept")[0];
-      var closeEditBtn = document.getElementsByClassName("close")[0];
-      var textToEdit = document.getElementsByClassName("modal-edit-note")[0].getElementsByTagName("input")[0];
+  function getTextEdited() {
+    var modal = document.getElementsByClassName("modal")[0];
+    var acceptEditBtn = document.getElementsByClassName("accept")[0];
+    var closeEditBtn = document.getElementsByClassName("close")[0];
+    var textToEdit = document.getElementsByClassName("modal-edit-note")[0].getElementsByTagName("input")[0];
 
-      modal.classList.remove("hidden");
+    modal.classList.remove("hidden");
 
-      return new Promise((resolve,reject) => {
-        acceptEditBtn.addEventListener("click", () => {
-          resolve(textToEdit.value);
-          textToEdit.value ='';
-        });
-        closeEditBtn.addEventListener("click", () => modal.classList.add("hidden"));
+    return new Promise((resolve,reject) => {
+      acceptEditBtn.addEventListener("click", () => {
+        resolve(textToEdit.value);
+        textToEdit.value ='';
       });
-    }
-
-
+      closeEditBtn.addEventListener("click", () => modal.classList.add("hidden"));
+    });
   }
 
   function showNoteBtns(e){
