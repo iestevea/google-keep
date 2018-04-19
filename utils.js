@@ -32,6 +32,7 @@ function manageNotes() {
   var deleteAllNotesBtn = document.getElementsByClassName("delete-all")[0];
   var inputNote = document.getElementsByClassName("searcher-content")[0].getElementsByTagName("input")[0];
   var notes = [];
+  var notesStorage = [];
   
   addNoteBtn.addEventListener("click", addNote);
   inputNote.addEventListener("keyup", enableAddBtn);
@@ -39,20 +40,20 @@ function manageNotes() {
 
   loadNotes();
 
-  function reOrder(notes) {
-    if(notes.length != localStorage.length){
-      localStorage.clear();
-      notes.forEach((note,index) => {
-        var text = note.children[0].innerText;
-        localStorage.setItem(`note${index}`,text);
-      });
-    }
+  function refreshStorage(notes,notesStorage) {
+    localStorage.clear();
+    notesStorage = [];
+    notesStorage = notes.map((note) => {
+      return note.children[0].innerText;
+    });
+    localStorage["notes"] = JSON.stringify(notesStorage);
   }
 
   function loadNotes() {
     if(localStorage.length != 0){
-      for(let i=0; i<localStorage.length; i++){
-        var newNote = createNote(localStorage.getItem(`note${i}`));
+      notesStorage = JSON.parse(localStorage["notes"]);
+      for(let i=0; i<notesStorage.length; i++){
+        var newNote = createNote(notesStorage[i]);
         content.appendChild(newNote);
         notes.push(newNote);
       }
@@ -64,8 +65,9 @@ function manageNotes() {
     var newNote = createNote(textNote);
     content.appendChild(newNote);
     notes.push(newNote);
+    notesStorage.push(textNote);
 
-    localStorage.setItem(`note${notes.indexOf(newNote)}`,textNote);
+    refreshStorage(notes,notesStorage);
 
     inputNote.value = '';
     enableAddBtn();
@@ -122,7 +124,7 @@ function manageNotes() {
         textToEdit.value ='';
       });
       closeEditBtn.onclick = (() => {
-        modal.classList.add("hidden")
+        modal.classList.add("hidden");
       });
     });
   }
@@ -138,7 +140,7 @@ function manageNotes() {
   function deleteNote(e) {
     var index = notes.indexOf(e.target.parentNode.parentNode.parentNode);
     notes.splice(index,1);
-    reOrder(notes);
+    refreshStorage(notes,notesStorage);
     content.removeChild(e.target.parentNode.parentNode.parentNode);
   }
 
@@ -157,7 +159,7 @@ function manageNotes() {
         content.removeChild(note);
       }
     });
-    reOrder(notes);
+    refreshStorage(notes,notesStorage);
   }
 
   function uncheckedAll(){
