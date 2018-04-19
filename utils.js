@@ -43,17 +43,25 @@ function manageNotes() {
     content.appendChild(newNote);
     notes.push(newNote);
 
+    localStorage.setItem(`note${notes.indexOf(newNote)}`,textNote);
+
     inputNote.value = '';
     enableAddBtn();
 
     function createNote(textNote) {
+      var modal = document.getElementsByClassName("modal")[0];
       var note = document.createElement("div");
       note.setAttribute("class","content-notes-note");
       note.innerHTML = getNoteContent(textNote);
       note.addEventListener("mouseenter", showNoteBtns);
       note.addEventListener("mouseleave", hideNoteBtns);
       note.children[1].children[0].children[1].addEventListener("click",deleteNote);
-      note.children[1].children[1].children[0].addEventListener("click",showModal);
+      note.children[1].children[1].addEventListener("click", (e) => {
+        getTextEdited().then((text) => {
+          note.children[0].innerText = text;
+          modal.classList.add("hidden");
+        });
+      });
       return note;
     }
 
@@ -70,7 +78,7 @@ function manageNotes() {
           </div>`;
     }
 
-    function showModal(e) {
+    function getTextEdited() {
       var modal = document.getElementsByClassName("modal")[0];
       var acceptEditBtn = document.getElementsByClassName("accept")[0];
       var closeEditBtn = document.getElementsByClassName("close")[0];
@@ -78,20 +86,13 @@ function manageNotes() {
 
       modal.classList.remove("hidden");
 
-      var promise = new Promise((resolve,reject) => {
+      return new Promise((resolve,reject) => {
         acceptEditBtn.addEventListener("click", () => {
           resolve(textToEdit.value);
-          // textToEdit.value ='';
+          textToEdit.value ='';
         });
         closeEditBtn.addEventListener("click", () => modal.classList.add("hidden"));
       });
-
-      promise.then((newText) => {
-        e.target.parentNode.parentNode.parentNode.innerHTML = getNoteContent(newText);
-        modal.classList.add("hidden");
-      });
-
-      
     }
 
 
@@ -108,6 +109,7 @@ function manageNotes() {
   function deleteNote(e) {
     var index = notes.indexOf(e.target.parentNode.parentNode.parentNode);
     notes.splice(index,1);
+    localStorage.removeItem(`note${index}`);
     content.removeChild(e.target.parentNode.parentNode.parentNode);
   }
 
@@ -123,6 +125,7 @@ function manageNotes() {
     Array.from(content.children).forEach((note,index) => {
       if(note.getElementsByTagName("input")[0].checked) {
         notes.splice(index,1);
+        localStorage.removeItem(`note${index}`);
         content.removeChild(note);
       }
     });
