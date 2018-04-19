@@ -117,11 +117,13 @@ function manageNotes() {
     modal.classList.remove("hidden");
 
     return new Promise((resolve,reject) => {
-      acceptEditBtn.addEventListener("click", () => {
+      acceptEditBtn.onclick = (() => {
         resolve(textToEdit.value);
         textToEdit.value ='';
       });
-      closeEditBtn.addEventListener("click", () => modal.classList.add("hidden"));
+      closeEditBtn.onclick = (() => {
+        modal.classList.add("hidden")
+      });
     });
   }
 
