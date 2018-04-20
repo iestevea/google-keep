@@ -25,18 +25,22 @@ function sideMenuBehavior() {
   }
 }
 
-function manageNotes() {
+function manageNotes(content) {
 
   var content = document.getElementsByClassName("content-notes")[0];
   var addNoteBtn = document.getElementsByClassName("addNoteBtn")[0];
   var deleteAllNotesBtn = document.getElementsByClassName("delete-all")[0];
+  var selectAllNotesBtn = document.getElementsByClassName("select-all")[0];
+  var unselectAllNotesBtn = document.getElementsByClassName("unselect-all")[0];
   var inputNote = document.getElementsByClassName("searcher-content")[0].getElementsByTagName("input")[0];
   var notes = [];
   var notesStorage = [];
   
   addNoteBtn.addEventListener("click", addNote);
   inputNote.addEventListener("keyup", enableAddBtn);
-  deleteAllNotesBtn.addEventListener("click",confirmDeleteNote);
+  deleteAllNotesBtn.addEventListener("click", confirmDeleteNote);
+  selectAllNotesBtn.addEventListener("click", checkAll);
+  unselectAllNotesBtn.addEventListener("click", uncheckedAll);
 
   loadNotes();
 
@@ -139,11 +143,7 @@ function manageNotes() {
   }
 
   function confirmDeleteNote(){
-    if(confirm("¿Estás seguro de que quieres borrar las notas seleccionadas?")) {
-      deleteAll();
-    } else {
-      uncheckedAll();
-    }
+    if(confirm("¿Estás seguro de que quieres borrar las notas seleccionadas?"))  deleteAll();
   }
 
   function deleteAll(){
@@ -157,11 +157,19 @@ function manageNotes() {
   }
 
   function uncheckedAll(){
-    Array.from(content.children).forEach((note,index) => {
-      if(note.getElementsByTagName("input")[0].checked){
-        note.getElementsByTagName("input")[0].checked = false;
-      }
-    });
+    mark(false);
+  }
+
+  function checkAll() {
+    mark(true);
+  }
+
+  function mark(condition) {
+    var noteCheckBox;
+      Array.from(content.children).forEach((note,index) => {
+        condition ? noteCheckBox = true : noteCheckBox = false;
+        note.getElementsByTagName("input")[0].checked = noteCheckBox;
+      });
   }
 
   function enableAddBtn(e) {
