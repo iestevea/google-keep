@@ -165,10 +165,8 @@ function manageNotes(content) {
   }
 
   function mark(condition) {
-    var noteCheckBox;
       Array.from(content.children).forEach((note,index) => {
-        condition ? noteCheckBox = true : noteCheckBox = false;
-        note.getElementsByTagName("input")[0].checked = noteCheckBox;
+        note.getElementsByTagName("input")[0].checked = condition;
       });
   }
 
