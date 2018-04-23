@@ -147,12 +147,15 @@ function manageNotes(content) {
   }
 
   function deleteAll(){
-    Array.from(content.children).forEach((note,index) => {
-      if(note.getElementsByTagName("input")[0].checked) {
-        notes.splice(index,1);
-        content.removeChild(note);
-      }
-    });
+    notes = Array.from(content.children).filter((note) => !note.getElementsByTagName("input")[0].checked );
+    var condition1 = Array.from(content.children).every((note) => !note.getElementsByTagName("input")[0].checked );
+    if(!condition1) {
+      Array.from(content.children).forEach((note,index) => {
+        if(note.getElementsByTagName("input")[0].checked) {
+          content.removeChild(note);
+        }
+      });
+    }
     refreshStorage(notes,notesStorage);
   }
 
